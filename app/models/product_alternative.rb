@@ -1,0 +1,2 @@
+class ProductAlternative < ApplicationRecord
+end
