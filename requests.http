@@ -7,16 +7,16 @@ POST {{ domain }}/users
 Content-Type: application/json
 
 {
-  "first_name": "Test",
-  "last_name": "Test",
-  "user_name": "username",
-  "email": "test@test.com",
+  "first_name": "Meghan",
+  "last_name": "Scherzer",
+  "user_name": "meghan44",
+  "email": "meghan@gmail.com",
   "password_digest": "password",
   "image_url": ""
 }
 
 ### Sessions create (login)
-POST {{ domain }}/sessions
+GET {{ domain }}/sessions
 Content-Type: application/json
 
 {

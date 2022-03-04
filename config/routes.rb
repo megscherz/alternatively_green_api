@@ -5,4 +5,12 @@ Rails.application.routes.draw do
   delete "/users/:id" => "users#destroy"
 
   post "/sessions" => "sessions#create"
+
+  get "/products" => "products#index"
+  post "/products" => "products#create"
+  get "/products/:id" => "products#show"
+
+  post "/reviews" => "reviews#create"
+  patch "/reviews/:id" => "reviews#update"
+  delete "/reviews/:id" => "reviews#destroy"
 end
