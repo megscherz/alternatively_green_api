@@ -1,9 +1,9 @@
 @jwt = 
 
-@domain = 
+@domain = http://localhost:3000
 
 ### User create (sign up)
-POST http://localhost:3000/users
+POST {{ domain }}/users
 Content-Type: application/json
 
 {
@@ -16,10 +16,10 @@ Content-Type: application/json
 }
 
 ### Sessions create (login)
-POST http://localhost:3000/sessions
+POST {{ domain }}/sessions
 Content-Type: application/json
 
 {
   "email": "test@test.com",
-  "password": "password"
+  "password_digest": "password"
 }
