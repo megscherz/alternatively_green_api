@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   patch "/users/:id" => "users#update"
   delete "/users/:id" => "users#destroy"
 
-  post "/sessions" => "sessions#create"
+  get "/sessions" => "sessions#create"
 
   get "/products" => "products#index"
   post "/products" => "products#create"

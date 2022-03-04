@@ -1,11 +1,14 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user, except: [:create]
+
   def create
     user = User.new(
       first_name: params[:first_name],
       last_name: params[:last_name],
       user_name: params[:user_name],
       email: params[:email],
-      password_digest: params[:password_digest],
+      password: params[:password],
+      password_confirmation: params[:password_confirmation],
       image_url: params[:image_url],
     )
     if user.save
@@ -26,7 +29,8 @@ class UsersController < ApplicationController
     user.last_name = params[:last_name] || user.last_name
     user.user_name = params[:user_name] || user.user_name
     user.email = params[:email] || user.email
-    user.password_digest = params[:password_digest] || user.password_digest
+    user.password = params[:password] || user.password
+    user.password_confirmation = params[:password_confirmation] || user.password_confirmation
     user.image_url = params[:image_url] || user.image_url
     user.save
     render json: user

@@ -1,4 +1,4 @@
-@jwt = 
+@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NDY1MTAyOTR9.GPD0ZV1xiT25mMRgABiqYj9hhVjMr0AWBghhWyf282M
 
 @domain = http://localhost:3000
 
@@ -7,11 +7,12 @@ POST {{ domain }}/users
 Content-Type: application/json
 
 {
-  "first_name": "Meghan",
-  "last_name": "Scherzer",
-  "user_name": "meghan44",
-  "email": "meghan@gmail.com",
-  "password_digest": "password",
+  "first_name": "Test2",
+  "last_name": "Test2",
+  "user_name": "test2",
+  "email": "test2@test.com",
+  "password": "password",
+  "password_confirmation": "password",
   "image_url": ""
 }
 
@@ -20,6 +21,6 @@ GET {{ domain }}/sessions
 Content-Type: application/json
 
 {
-  "email": "test@test.com",
-  "password_digest": "password"
+  "email": "test2@test.com",
+  "password": "password"
 }
