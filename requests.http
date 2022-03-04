@@ -49,3 +49,4 @@ Authorization: Bearer {{ jwt }}
 DELETE {{ domain }}/users/4
 Content-Type: application/json
 Authorization: Bearer {{ jwt }}
+
