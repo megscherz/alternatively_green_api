@@ -1,4 +1,4 @@
-@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NDY1MTAyOTR9.GPD0ZV1xiT25mMRgABiqYj9hhVjMr0AWBghhWyf282M
+@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NDY1MTQwNDV9.AwYIQHIzmbL4qQxmtBS0zr7SLpQ5PPjRxjO-aMNZJ5Q
 
 @domain = http://localhost:3000
 
@@ -7,13 +7,13 @@ POST {{ domain }}/users
 Content-Type: application/json
 
 {
-  "first_name": "Test2",
-  "last_name": "Test2",
-  "user_name": "test2",
-  "email": "test2@test.com",
+  "first_name": "Isabel",
+  "last_name": "Thedog",
+  "user_name": "imthedawg14",
+  "email": "thedawg@gmail.com",
   "password": "password",
   "password_confirmation": "password",
-  "image_url": ""
+  "image_url": "http://placeimg.com/640/480/animals"
 }
 
 ### Sessions create (login)
@@ -21,6 +21,31 @@ GET {{ domain }}/sessions
 Content-Type: application/json
 
 {
-  "email": "test2@test.com",
+  "email": "meghan@gmail.com",
   "password": "password"
 }
+
+### User show
+GET {{ domain }}/users/4
+Content-Type: application/json
+Authorization: Bearer {{ jwt }}
+
+### User update
+PATCH {{ domain }}/users/4
+Content-Type: application/json
+Authorization: Bearer {{ jwt }}
+
+{
+  "first_name": "Meghan",
+  "last_name": "Scherzer",
+  "user_name": "meghan44",
+  "email": "meghan@gmail.com",
+  "password": "password",
+  "password_confirmation": "password",
+  "image_url": "http://placeimg.com/640/480/people?t=1646424933414"
+}
+
+### User delete
+DELETE {{ domain }}/users/4
+Content-Type: application/json
+Authorization: Bearer {{ jwt }}

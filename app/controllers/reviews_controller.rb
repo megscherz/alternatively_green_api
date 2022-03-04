@@ -1,4 +1,6 @@
 class ReviewsController < ApplicationController
+  before_action :authenticate_user
+
   def create
     review = Review.new(
       title: params[:title],

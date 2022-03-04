@@ -20,25 +20,37 @@ class UsersController < ApplicationController
 
   def show
     user = User.find_by(id: params[:id])
-    render json: user
+    if user == current_user
+      render json: user
+    else
+      render json: {}, status: :unauthorized
+    end
   end
 
   def update
     user = User.find_by(id: params[:id])
-    user.first_name = params[:first_name] || user.first_name
-    user.last_name = params[:last_name] || user.last_name
-    user.user_name = params[:user_name] || user.user_name
-    user.email = params[:email] || user.email
-    user.password = params[:password] || user.password
-    user.password_confirmation = params[:password_confirmation] || user.password_confirmation
-    user.image_url = params[:image_url] || user.image_url
-    user.save
-    render json: user
+    if user == current_user
+      user.first_name = params[:first_name] || user.first_name
+      user.last_name = params[:last_name] || user.last_name
+      user.user_name = params[:user_name] || user.user_name
+      user.email = params[:email] || user.email
+      user.password = params[:password] || user.password
+      user.password_confirmation = params[:password_confirmation] || user.password_confirmation
+      user.image_url = params[:image_url] || user.image_url
+      user.save
+      render json: user
+    else
+      render json: {}, status: :unauthorized
+    end
   end
 
   def destroy
     user = User.find_by(id: params[:id])
-    user.destroy
-    render json: { message: "User successfully deleted" }
+    if user == current_user
+      user.destroy
+      render json: { message: "User successfully deleted" }
+    else
+      render json: {}, status: :unauthorized
+    end
   end
 end
