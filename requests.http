@@ -50,3 +50,30 @@ DELETE {{ domain }}/users/4
 Content-Type: application/json
 Authorization: Bearer {{ jwt }}
 
+### Product index
+
+GET {{ domain }}/products
+
+### Product create
+
+### Product show
+GET {{ domain }}/products/4
+Content-Type: application/json
+
+### Product destroy
+DELETE {{ domain }}/products/6
+Content-Type: application/json
+
+### ProductAlternatives create
+
+POST {{ domain }}/product_alternatives
+Content-Type: application/json
+
+{
+  "standard_product_id": "3",
+  "green_product_id": "9"
+}
+
+### ProductAlternatives destroy
+DELETE {{ domain }}/product_alternatives/2
+Content-Type: application/json

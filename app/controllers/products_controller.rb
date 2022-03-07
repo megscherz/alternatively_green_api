@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_user, except: [:index, :show]
+  # before_action :authenticate_user, except: [:index, :show]
 
   def index
     products = Product.all
@@ -25,5 +25,11 @@ class ProductsController < ApplicationController
   def show
     product = Product.find_by(id: params[:id])
     render json: product
+  end
+
+  def destroy
+    product = Product.find_by(id: params[:id])
+    product.destroy
+    render json: { message: "Product successfully deleted" }
   end
 end
