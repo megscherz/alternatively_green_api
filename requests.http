@@ -1,4 +1,4 @@
-@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NDY1MTQwNDV9.AwYIQHIzmbL4qQxmtBS0zr7SLpQ5PPjRxjO-aMNZJ5Q
+@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NDY4Njc5ODh9.NjQyfQAASxj7YR2mCt3Z_iBT325rTTBA9XVbxOi7vWM
 
 @domain = http://localhost:3000
 
@@ -25,6 +25,7 @@ Content-Type: application/json
   "password": "password"
 }
 
+###################################### USERS
 ### User show
 GET {{ domain }}/users/4
 Content-Type: application/json
@@ -50,30 +51,84 @@ DELETE {{ domain }}/users/4
 Content-Type: application/json
 Authorization: Bearer {{ jwt }}
 
+################################### PRODUCTS
 ### Product index
-
 GET {{ domain }}/products
 
 ### Product create
+POST {{ domain }}/products
+Content-Type: application/json
+Authorization: Bearer {{ jwt }}
+
+{
+  "name": "",
+  "description": "",
+  "category": "",
+  "image_url": "",
+  "price": ,
+  "ingredients": ""
+}
 
 ### Product show
 GET {{ domain }}/products/4
 Content-Type: application/json
 
+### Product update
+PATCH {{ domain }}/products/4
+Content-Type: application/json
+Authorization: Bearer {{ jwt }}
+
+{
+  "name": ""
+}
+
 ### Product destroy
 DELETE {{ domain }}/products/6
 Content-Type: application/json
 
+######################################### PRODUCT ALTERNATIVES
 ### ProductAlternatives create
-
 POST {{ domain }}/product_alternatives
 Content-Type: application/json
 
 {
-  "standard_product_id": "3",
-  "green_product_id": "9"
+  "standard_product_id": "12",
+  "green_product_id": "11"
 }
 
 ### ProductAlternatives destroy
 DELETE {{ domain }}/product_alternatives/2
 Content-Type: application/json
+
+######################################## REVIEWS
+### Review index
+GET {{ domain }}/reviews
+Content-Type: application/json
+Authorization: Bearer {{ jwt }}
+
+### Reviews create
+POST {{ domain }}/reviews
+Content-Type: application/json
+Authorization: Bearer {{ jwt }}
+
+{
+  "product_id": 12,
+  "title": "Best ever",
+  "image_url": "",
+  "body": "laksjdfasdfjhasldkfhaosiduf",
+  "star_rating": 5
+}
+
+### Reviews show
+GET {{ domain }}/reviews/1
+Content-Type: application/json
+Authorization: Bearer {{ jwt }}
+
+### Reviews update
+PATCH {{ domain }}/reviews/3
+Content-Type: application/json
+Authorization: Bearer {{ jwt }}
+
+{
+  "image_url": "https://i5.walmartimages.com/asr/3c5910f8-4f34-4979-b014-b34e416c14ff_1.3f6241a35df3e30eb77a60d144a043a4.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF"
+}
