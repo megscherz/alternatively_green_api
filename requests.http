@@ -26,6 +26,11 @@ Content-Type: application/json
 }
 
 ###################################### USERS
+### User index
+GET {{ domain }}/users
+Content-Type: application/json
+Authorization: Bearer {{ jwt }}
+
 ### User show
 GET {{ domain }}/users/4
 Content-Type: application/json
@@ -106,7 +111,7 @@ GET {{ domain }}/reviews
 Content-Type: application/json
 Authorization: Bearer {{ jwt }}
 
-### Reviews create
+### Review create
 POST {{ domain }}/reviews
 Content-Type: application/json
 Authorization: Bearer {{ jwt }}
@@ -119,12 +124,12 @@ Authorization: Bearer {{ jwt }}
   "star_rating": 5
 }
 
-### Reviews show
+### Review show
 GET {{ domain }}/reviews/1
 Content-Type: application/json
 Authorization: Bearer {{ jwt }}
 
-### Reviews update
+### Review update
 PATCH {{ domain }}/reviews/3
 Content-Type: application/json
 Authorization: Bearer {{ jwt }}
@@ -132,3 +137,8 @@ Authorization: Bearer {{ jwt }}
 {
   "image_url": "https://i5.walmartimages.com/asr/3c5910f8-4f34-4979-b014-b34e416c14ff_1.3f6241a35df3e30eb77a60d144a043a4.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF"
 }
+
+### Review destroy
+DELETE {{ domain }}/reviews/4
+Content-Type: application/json
+Authorization: Bearer {{ jwt }}

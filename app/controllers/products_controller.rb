@@ -27,9 +27,26 @@ class ProductsController < ApplicationController
     render json: product
   end
 
+  def update
+    user = User.find_by(id: params[:id])
+    if user == current_user
+      product = product.find_by(id: params[:id])
+      product.name = params[:name] || product.name
+      product.description = params[:description] || product.description
+      product.category = params[:category] || product.category
+      product.image_url = params[:image_url] || product.image_url
+      product.price = params[:price] || product.price
+      product.ingredients = params[:ingredients] || product.ingredients
+      product.save
+      render json: product
+    else
+      render json: {}, status: :unauthorized
+    end
+  end
+
   def destroy
     product = Product.find_by(id: params[:id])
     product.destroy
-    render json: { message: "Product successfully deleted" }
+    render json: { message: "Product successfully deleted." }
   end
 end
