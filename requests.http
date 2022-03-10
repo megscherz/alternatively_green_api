@@ -97,8 +97,8 @@ POST {{ domain }}/product_alternatives
 Content-Type: application/json
 
 {
-  "standard_product_id": "12",
-  "green_product_id": "11"
+  "standard_product_id": "21",
+  "green_product_id": "22"
 }
 
 ### ProductAlternatives destroy
