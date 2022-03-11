@@ -28,14 +28,13 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    user = User.find_by(id: params[:id])
-    if user == current_user
-      review = Review.find_by(id: params[:id])
-      review.product_id = params[:product_id] || review.product_id
-      review.title = params[:title] || review.title
-      review.image_url = params[:image_url] || review.image_url
-      review.body = params[:body] || review.body
-      review.star_rating = params[:star_rating] || review.star_rating
+    review = Review.find_by(id: params[:id])
+    review.product_id = params[:product_id] || review.product_id
+    review.title = params[:title] || review.title
+    review.image_url = params[:image_url] || review.image_url
+    review.body = params[:body] || review.body
+    review.star_rating = params[:star_rating] || review.star_rating
+    if current_user
       review.save
       render json: review
     else
@@ -45,7 +44,11 @@ class ReviewsController < ApplicationController
 
   def destroy
     review = Review.find_by(id: params[:id])
-    review.destroy
-    render json: { message: "Your review has been deleted." }
+    if current_user
+      review.destroy
+      render json: { message: "Your review has been deleted." }
+    else
+      render json: {}, status: :unauthorized
+    end
   end
 end
