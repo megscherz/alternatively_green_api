@@ -15,8 +15,7 @@ class ProductsController < ApplicationController
       price: params[:price],
       ingredients: params[:ingredients],
     )
-    if current_user
-      product.save
+    if product.save
       render json: { message: "Product created successfully" }, status: :created
     else
       render json: { errors: product.errors.full_messages }, status: :bad_request
@@ -36,8 +35,7 @@ class ProductsController < ApplicationController
     product.image_url = params[:image_url] || product.image_url
     product.price = params[:price] || product.price
     product.ingredients = params[:ingredients] || product.ingredients
-    if current_user
-      product.save
+    if product.save
       render json: product
     else
       render json: {}, status: :unauthorized
@@ -46,8 +44,7 @@ class ProductsController < ApplicationController
 
   def destroy
     product = Product.find_by(id: params[:id])
-    if current_user
-      product.destroy
+    if product.destroy
       render json: { message: "Product successfully deleted." }
     else
       render json: {}, status: :unauthorized

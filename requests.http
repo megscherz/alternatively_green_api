@@ -1,4 +1,4 @@
-@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NDcxMDI1Nzl9.54-79OSSUqfKFJDITyG6oN2g5VuO5EW2KhiSE0MVBYs
+@jwt = 
 
 @domain = http://localhost:3000
 
@@ -7,10 +7,10 @@ POST {{ domain }}/users
 Content-Type: application/json
 
 {
-  "first_name": "Isabel",
-  "last_name": "Thedog",
-  "user_name": "imthedawg14",
-  "email": "thedawg@gmail.com",
+  "first_name": "Milo",
+  "last_name": "Thecat",
+  "user_name": "imthekitty99",
+  "email": "thecat@gmail.com",
   "password": "password",
   "password_confirmation": "password",
   "image_url": "http://placeimg.com/640/480/animals"
@@ -75,7 +75,7 @@ Authorization: Bearer {{ jwt }}
 }
 
 ### Product show
-GET {{ domain }}/products/4
+GET {{ domain }}/products/7
 Content-Type: application/json
 
 ### Product update
@@ -84,12 +84,13 @@ Content-Type: application/json
 Authorization: Bearer {{ jwt }}
 
 {
-  "category": "green"
+  "category": "standard"
 }
 
 ### Product destroy
 DELETE {{ domain }}/products/6
 Content-Type: application/json
+Authorization: Bearer {{ jwt }}
 
 ######################################### PRODUCT ALTERNATIVES
 ### ProductAlternatives create
@@ -109,7 +110,7 @@ Content-Type: application/json
 ### Review index
 GET {{ domain }}/reviews
 Content-Type: application/json
-Authorization: Bearer {{ jwt }}
+
 
 ### Review create
 POST {{ domain }}/reviews

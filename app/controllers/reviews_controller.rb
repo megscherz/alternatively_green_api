@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  before_action :authenticate_user
+  before_action :authenticate_user, except: [:index]
 
   def index
     reviews = Review.all
@@ -34,8 +34,7 @@ class ReviewsController < ApplicationController
     review.image_url = params[:image_url] || review.image_url
     review.body = params[:body] || review.body
     review.star_rating = params[:star_rating] || review.star_rating
-    if current_user
-      review.save
+    if review.save
       render json: review
     else
       render json: {}, status: :unauthorized
@@ -44,8 +43,7 @@ class ReviewsController < ApplicationController
 
   def destroy
     review = Review.find_by(id: params[:id])
-    if current_user
-      review.destroy
+    if review.destroy
       render json: { message: "Your review has been deleted." }
     else
       render json: {}, status: :unauthorized

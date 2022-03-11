@@ -34,15 +34,14 @@ class UsersController < ApplicationController
 
   def update
     user = User.find_by(id: params[:id])
-    if user == current_user
-      user.first_name = params[:first_name] || user.first_name
-      user.last_name = params[:last_name] || user.last_name
-      user.user_name = params[:user_name] || user.user_name
-      user.email = params[:email] || user.email
-      user.password = params[:password] || user.password
-      user.password_confirmation = params[:password_confirmation] || user.password_confirmation
-      user.image_url = params[:image_url] || user.image_url
-      user.save
+    user.first_name = params[:first_name] || user.first_name
+    user.last_name = params[:last_name] || user.last_name
+    user.user_name = params[:user_name] || user.user_name
+    user.email = params[:email] || user.email
+    user.password = params[:password] || user.password
+    user.password_confirmation = params[:password_confirmation] || user.password_confirmation
+    user.image_url = params[:image_url] || user.image_url
+    if user.save
       render json: user
     else
       render json: {}, status: :unauthorized
@@ -51,8 +50,7 @@ class UsersController < ApplicationController
 
   def destroy
     user = User.find_by(id: params[:id])
-    if user == current_user
-      user.destroy
+    if user.destroy
       render json: { message: "User successfully deleted" }
     else
       render json: {}, status: :unauthorized
