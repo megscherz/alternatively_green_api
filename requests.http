@@ -1,4 +1,4 @@
-@jwt = 
+@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NDcxMTI0NTV9.AhHp_QqCa9HG6WOqqLc2slYOHRUwJSDigCkuEEOl3xE
 
 @domain = http://localhost:3000
 
@@ -7,13 +7,13 @@ POST {{ domain }}/users
 Content-Type: application/json
 
 {
-  "first_name": "Milo",
-  "last_name": "Thecat",
-  "user_name": "imthekitty99",
-  "email": "thecat@gmail.com",
+  "first_name": "Dani",
+  "last_name": "Zeeeee",
+  "user_name": "Danizee",
+  "email": "Dani@gmail.com",
   "password": "password",
   "password_confirmation": "password",
-  "image_url": "http://placeimg.com/640/480/animals"
+  "image_url": ""
 }
 
 ### Sessions create (login)
@@ -26,33 +26,22 @@ Content-Type: application/json
 }
 
 ###################################### USERS
-### User index
-GET {{ domain }}/users
-Content-Type: application/json
-Authorization: Bearer {{ jwt }}
-
 ### User show
-GET {{ domain }}/users/4
+GET {{ domain }}/users/me
 Content-Type: application/json
 Authorization: Bearer {{ jwt }}
 
 ### User update
-PATCH {{ domain }}/users/4
+PATCH {{ domain }}/users/me
 Content-Type: application/json
 Authorization: Bearer {{ jwt }}
 
 {
-  "first_name": "Meghan",
-  "last_name": "Scherzer",
-  "user_name": "meghan44",
-  "email": "meghan@gmail.com",
-  "password": "password",
-  "password_confirmation": "password",
   "image_url": "http://placeimg.com/640/480/people?t=1646424933414"
 }
 
 ### User delete
-DELETE {{ domain }}/users/4
+DELETE {{ domain }}/users/me
 Content-Type: application/json
 Authorization: Bearer {{ jwt }}
 
@@ -66,31 +55,17 @@ Content-Type: application/json
 Authorization: Bearer {{ jwt }}
 
 {
-  "name": "dalsdfasdf",
-  "description": "asdfa",
-  "category": "asdfasf",
-  "image_url": "asdfasdf",
+  "name": "Test Product",
+  "description": "Cleans things",
+  "category": "green",
+  "image_url": "",
   "price": 4,
-  "ingredients": "asdfasdf"
+  "ingredients": "water, soap"
 }
 
 ### Product show
-GET {{ domain }}/products/7
+GET {{ domain }}/products/9
 Content-Type: application/json
-
-### Product update
-PATCH {{ domain }}/products/23
-Content-Type: application/json
-Authorization: Bearer {{ jwt }}
-
-{
-  "category": "standard"
-}
-
-### Product destroy
-DELETE {{ domain }}/products/6
-Content-Type: application/json
-Authorization: Bearer {{ jwt }}
 
 ######################################### PRODUCT ALTERNATIVES
 ### ProductAlternatives create
@@ -107,31 +82,21 @@ DELETE {{ domain }}/product_alternatives/2
 Content-Type: application/json
 
 ######################################## REVIEWS
-### Review index
-GET {{ domain }}/reviews
-Content-Type: application/json
-
-
 ### Review create
 POST {{ domain }}/reviews
 Content-Type: application/json
 Authorization: Bearer {{ jwt }}
 
 {
-  "product_id": 12,
-  "title": "Best ever",
+  "product_id": 10,
+  "title": "Test review",
   "image_url": "",
-  "body": "laksjdfasdfjhasldkfhaosiduf",
+  "body": "I love this product!!",
   "star_rating": 5
 }
 
-### Review show
-GET {{ domain }}/reviews/1
-Content-Type: application/json
-Authorization: Bearer {{ jwt }}
-
 ### Review update
-PATCH {{ domain }}/reviews/3
+PATCH {{ domain }}/reviews/7
 Content-Type: application/json
 Authorization: Bearer {{ jwt }}
 
@@ -140,6 +105,6 @@ Authorization: Bearer {{ jwt }}
 }
 
 ### Review destroy
-DELETE {{ domain }}/reviews/4
+DELETE {{ domain }}/reviews/7
 Content-Type: application/json
 Authorization: Bearer {{ jwt }}

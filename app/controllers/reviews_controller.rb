@@ -1,10 +1,5 @@
 class ReviewsController < ApplicationController
-  before_action :authenticate_user, except: [:index]
-
-  def index
-    reviews = Review.all
-    render json: reviews
-  end
+  before_action :authenticate_user
 
   def create
     review = Review.new(
@@ -16,15 +11,10 @@ class ReviewsController < ApplicationController
       star_rating: params[:star_rating],
     )
     if review.save
-      render json: { message: "Review created successfully" }, status: :created
+      render json: review
     else
       render json: { errors: review.errors.full_messages }, status: :bad_request
     end
-  end
-
-  def show
-    review = Review.find_by(id: params[:id])
-    render json: review
   end
 
   def update

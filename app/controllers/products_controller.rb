@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
 
   def index
     products = Product.all
-    render json: products
+    render json: products, include: []
   end
 
   def create
@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
       ingredients: params[:ingredients],
     )
     if product.save
-      render json: { message: "Product created successfully" }, status: :created
+      render json: product
     else
       render json: { errors: product.errors.full_messages }, status: :bad_request
     end
@@ -24,30 +24,6 @@ class ProductsController < ApplicationController
 
   def show
     product = Product.find_by(id: params[:id])
-    render json: product
-  end
-
-  def update
-    product = Product.find_by(id: params[:id])
-    product.name = params[:name] || product.name
-    product.description = params[:description] || product.description
-    product.category = params[:category] || product.category
-    product.image_url = params[:image_url] || product.image_url
-    product.price = params[:price] || product.price
-    product.ingredients = params[:ingredients] || product.ingredients
-    if product.save
-      render json: product
-    else
-      render json: {}, status: :unauthorized
-    end
-  end
-
-  def destroy
-    product = Product.find_by(id: params[:id])
-    if product.destroy
-      render json: { message: "Product successfully deleted." }
-    else
-      render json: {}, status: :unauthorized
-    end
+    render json: product, include: ["reviews.user", "alternatives"]
   end
 end

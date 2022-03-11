@@ -1,11 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user, except: [:create]
 
-  def index
-    user = User.all
-    render json: user
-  end
-
   def create
     user = User.new(
       first_name: params[:first_name],
@@ -24,36 +19,29 @@ class UsersController < ApplicationController
   end
 
   def show
-    user = User.find_by(id: params[:id])
-    if user == current_user
-      render json: user
-    else
-      render json: {}, status: :unauthorized
-    end
+    render json: current_user
   end
 
   def update
-    user = User.find_by(id: params[:id])
+    user = current_user
     user.first_name = params[:first_name] || user.first_name
     user.last_name = params[:last_name] || user.last_name
     user.user_name = params[:user_name] || user.user_name
     user.email = params[:email] || user.email
-    user.password = params[:password] || user.password
-    user.password_confirmation = params[:password_confirmation] || user.password_confirmation
     user.image_url = params[:image_url] || user.image_url
     if user.save
       render json: user
     else
-      render json: {}, status: :unauthorized
+      render json: { errors: user.errors.full_messages }, status: :bad_request
     end
   end
 
   def destroy
-    user = User.find_by(id: params[:id])
+    user = current_user
     if user.destroy
       render json: { message: "User successfully deleted" }
     else
-      render json: {}, status: :unauthorized
+      render json: { errors: user.errors.full_messages }, status: :bad_request
     end
   end
 end
