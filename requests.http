@@ -17,7 +17,7 @@ Content-Type: application/json
 }
 
 ### Sessions create (login)
-GET {{ domain }}/sessions
+POST {{ domain }}/sessions
 Content-Type: application/json
 
 {

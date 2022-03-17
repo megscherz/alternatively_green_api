@@ -5,7 +5,7 @@ class ProductSerializer < ActiveModel::Serializer
   has_many :alternatives
 
   def alternatives
-    if object.category.downcase == "green"
+    if object.category == "green"
       return object.standard_products
     else
       return object.green_products
